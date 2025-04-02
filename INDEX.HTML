@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Brothers Automotive - Complete Auto Repair &amp; Tire Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1c5d8e;
+            --secondary-blue: #3c7ba7;
+            --primary-orange: #d15b35;
+            --secondary-orange: #e57d5e;
+            --light-cream: #f8f1dd;
+            --dark: #121212;
+            --dark-secondary: #1e1e1e;
+            --dark-card: #242424;
+            --text-light: #f0f0f0;
+            --success-green: #90a959;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            padding-top: 80px; /* Adjusted dynamically if header wraps */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-secondary);
+            color: var(--text-light);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: padding 0.3s ease; /* Smooth transition for padding change */
+            overflow: hidden; /* Ensure particles stay contained */
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-wrap: wrap; /* Allow wrapping */
+            position: relative;
+            z-index: 5; /* Make sure content is above particles */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: 10px; /* Add margin for spacing when wrapped */
+            flex-shrink: 0; /* Prevent logo from shrinking too much */
+        }
+
+        .logo-img {
+            height: 50px;
+            margin-right: 15px;
+            content: url('brotheslogo.png');
+        }
+
+        .logo-text {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-text span {
+            color: var(--primary-orange);
+            font-weight: normal;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+            justify-content: flex-end; /* Align buttons to the right */
+            align-items: center; /* Vertically align items */
+            margin-bottom: 10px; /* Add margin for spacing when wrapped */
+            flex-grow: 1; /* Allow contact info to take available space */
+            min-width: 260px; /* Minimum width to accommodate buttons */
+        }
+
+        .contact-button, .narrator-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 15px;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 120px;
+            text-align: center;
+            flex-shrink: 0; /* Prevent buttons from shrinking too much */
+            margin-top: 5px; /* Add space when buttons wrap */
+            margin-bottom: 5px;
+        }
+
+                    .contact-button:hover, .narrator-btn:hover {
+            background-color: var(--primary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Special styling for Call Now button */
+        #call-now-button {
+            animation: pulse-glow 2s infinite, floating 3s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(209, 91, 53, 0.5);
+            position: relative;
+            background: linear-gradient(145deg, var(--primary-blue), var(--secondary-blue));
+            font-weight: 700;
+            z-index: 1001;
+        }
+        
+        #call-now-button:hover {
+            animation-play-state: paused;
+            background: var(--primary-orange);
+            box-shadow: 0 0 20px rgba(209, 91, 53, 0.7);
+        }
+        
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 15px rgba(209, 91, 53, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(209, 91, 53, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(209, 91, 53, 0.5);
+            }
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .contact-button .emoji, .narrator-btn .emoji {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .narrator-btn {
+            background-color: var(--primary-orange);
+        }
+
+        .narrator-btn.active {
+            background-color: var(--success-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(144, 169, 89, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(144, 169, 89, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(144, 169, 89, 0);
+            }
+        }
+
+        /* Narrator Modal */
+        .narrator-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .narrator-modal-content {
+            background-color: var(--dark-secondary);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .narrator-modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .narrator-options {
+            margin-bottom: 30px;
+        }
+
+        .narrator-option-group {
+            margin-bottom: 20px;
+        }
+
+        .narrator-option-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .narrator-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: var(--dark);
+            color: var(--text-light);
+        }
+
+        .narrator-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .narrator-control-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .narrator-play-btn {
+            background-color: var(--success-green);
+            color: white;
+        }
+
+        .narrator-stop-btn {
+            background-color: var(--primary-orange);
+            color: white;
+        }
+
+        .narrator-close-btn {
+            background-color: #666;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--dark);
+            height: 100vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .storefront-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.6;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('ChatGPT Image Mar 29, 2025, 03_01_04 PM.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .hero-logo {
+            width: 250px;
+            height: auto;
+        }
+
+        .hero-message {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary-orange);
+        }
+
+        .emoji-highlight {
+            font-size: 1.2em;
+            margin: 0 3px;
+            display: inline-block;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-orange);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn.btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--text-light);
+        }
+
+        .btn.btn-outline:hover {
+            background-color: var(--primary-blue);
+        }
+
+        /* Sections Styles */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-orange);
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--light-cream);
+        }
+        #services .section-title {
+             color: var(--primary-blue); /* Ensure title is visible on light background */
+        }
+         #services .section-title:after {
+             background-color: var(--primary-orange);
+        }
+
+        .service-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 350px;
+            height: 450px; /* Fixed height for cards */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            color: #333; /* Default text color for cards */
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        /* Position the front and back side */
+        .service-card-front, .service-card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          -webkit-backface-visibility: hidden; /* Safari */
+          backface-visibility: hidden;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .service-card-front {
+             background-color: white;
+             color: black;
+        }
+
+        .service-card-back {
+          background-color: var(--primary-blue);
+          color: white;
+          transform: rotateY(180deg);
+          padding: 20px;
+          justify-content: space-between; /* Space out content */
+          overflow-y: auto; /* Allow scrolling if content overflows */
+        }
+
+        .service-card.flipped .service-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .service-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .service-card[data-service="tires"] .service-image {
+            content: url('tires.jpg');
+        }
+
+        .service-content {
+            padding: 20px;
+            flex-grow: 1; /* Allow content to fill space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space title/desc and details */
+            text-align: left;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .service-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .service-details ul {
+            list-style-type: none;
+            margin-bottom: 15px;
+            padding: 0;
+            text-align: left;
+        }
+
+        .service-details li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .service-details li .emoji {
+            color: var(--primary-orange);
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        /* Back card specific styles */
+        .service-card-back h3 {
+             margin-bottom: 15px;
+             font-size: 1.5rem;
+             color: white;
+        }
+        .service-card-back p {
+             font-size: 0.9rem;
+             line-height: 1.5;
+             margin-bottom: 15px;
+        }
+        .service-card-back ul {
+             list-style-type: none;
+             margin: 15px 0;
+             padding: 0;
+             text-align: left;
+             flex-grow: 1;
+        }
+        .service-card-back li {
+             margin-bottom: 8px;
+             font-size: 0.9rem;
+             color: var(--light-cream);
+             display: flex;
+             align-items: center;
+        }
+         .service-card-back li .emoji {
+             color: var(--secondary-orange);
+             margin-right: 10px;
+             font-size: 1rem;
+         }
+        .service-card-back .btn {
+             margin-top: auto; /* Push button to bottom */
+             background-color: var(--secondary-orange);
+             align-self: center;
+         }
+
+        /* Services Categories */
+        .services-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 60px; /* Increased space */
+        }
+
+        .service-category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: #333; /* Text color for categories */
+        }
+
+        .service-category h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-orange);
+            font-size: 1.5rem;
+            margin-bottom: 20px; /* Space below heading */
+        }
+
+        .service-list {
+            columns: 2;
+            column-gap: 25px; /* Increased gap */
+            list-style: none; /* Remove default list style */
+            padding-left: 0; /* Remove default padding */
+        }
+
+        .service-list li {
+            margin-bottom: 12px;
+            break-inside: avoid;
+            display: flex;
+            align-items: center;
+            color: #333;
+            font-size: 0.95rem; /* Slightly larger font */
+        }
+
+        .service-list .emoji {
+            margin-right: 12px; /* More space */
+            font-size: 1.2em;
+            color: var(--primary-orange); /* Use theme color */
+        }
+
+        /* Tire Services Section */
+        #tire-services {
+            background-color: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+         #tire-services .section-title {
+             color: var(--primary-blue); /* Keep blue title */
+         }
+          #tire-services .section-title:after {
+             background-color: var(--primary-orange);
+         }
+
+        #tire-services:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* Enhanced Tire Finder Styles */
+        .tire-section {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .tire-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center; /* Center section sub-headings */
+        }
+        .tire-section h3 {
+             color: var(--primary-blue);
+             margin-top: 0;
+             margin-bottom: 15px;
+             font-size: 1.5rem; /* Slightly larger */
+         }
+
+        .tire-section p {
+            color: #aaa;
+            margin-bottom: 25px;
+            text-align: center; /* Center paragraph text */
+            max-width: 700px; /* Limit width for readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tire-price-range {
+            font-weight: bold;
+            color: var(--primary-orange);
+            margin: 15px 0; /* Consistent margin */
+            font-size: 1.1rem;
+            display: block; /* Ensure it takes full width if needed */
+        }
+
+        /* Consolidated Tire Brand & Size Info */
+        .tire-brands-container {
+            margin: 30px 0;
+        }
+
+        .tire-brands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tire-brand {
+            padding: 10px 20px;
+            background-color: #333;
+            color: var(--text-light);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tire-brand:hover, .tire-brand.active {
+            background-color: var(--primary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tire-brand.active {
+            font-weight: bold;
+            position: relative;
+        }
+
+        .tire-brand.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 3px;
+            background-color: var(--primary-orange);
+        }
+
+        .tire-brand-info {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 25px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tire-brand-info.active {
+            display: block;
+        }
+
+        .tire-brand-info h4 {
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .tire-info-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .tire-vehicle-types {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .tire-vehicle-types h5 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+        }
+
+        .tire-size-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tire-size-list li {
+            margin-bottom: 12px;
+            color: #bbb;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tire-size-list .vehicle-type {
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax */
+            gap: 30px; /* Increased gap */
+            margin-top: 30px;
+        }
+
+        .tire-service-card {
+            background-color: var(--dark-secondary);
+            border-radius: 8px;
+            padding: 25px; /* More padding */
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack content vertically */
+        }
+
+        .tire-service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-orange);
+        }
+
+        .tire-service-card h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .tire-service-card ul {
+            list-style-type: none;
+            margin-bottom: 15px;
+            padding-left: 0; /* Remove default padding */
+            flex-grow: 1; /* Allow list to take available space */
+        }
+
+        .tire-service-card li {
+            margin-bottom: 10px;
+            padding-left: 25px; /* Increased indent */
+            position: relative;
+            color: #aaa;
+            font-size: 0.95rem; /* Slightly larger font */
+        }
+
+        .tire-service-card li:before {
+            content: '✓'; /* Checkmark instead of bullet */
+            color: var(--primary-orange);
+            position: absolute;
+            left: 0;
+            font-weight: bold; /* Make checkmark bolder */
+            font-size: 1.1em; /* Slightly larger checkmark */
+        }
+         .tire-service-card .tire-price-range {
+             margin-top: auto; /* Push price to the bottom */
+             text-align: right; /* Align price to the right */
+             font-size: 1rem;
+         }
+
+        /* Tire Selection Chart */
+        .tire-selection-chart {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow-x: auto; /* Allow horizontal scroll on small screens */
+        }
+
+        .tire-selection-chart h3 {
+            color: var(--primary-blue);
+            margin-bottom: 25px; /* More space */
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .tire-chart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            min-width: 800px; /* Ensure table doesn't collapse too much */
+        }
+
+        .tire-chart-table th {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 15px; /* More padding */
+            text-align: left;
+            font-size: 1rem; /* Adjust font size */
+            white-space: nowrap; /* Prevent header text wrap */
+        }
+
+        .tire-chart-table td {
+            padding: 12px 15px; /* Adjust padding */
+            border-bottom: 1px solid #444;
+            color: #aaa;
+            font-size: 0.95rem; /* Adjust font size */
+            vertical-align: middle; /* Align content vertically */
+        }
+
+        .tire-chart-table tbody tr:hover td {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Reviews Section */
+        #reviews {
+            background-color: var(--light-cream);
+        }
+
+        #reviews .section-title {
+            color: var(--primary-blue);
+        }
+
+        #reviews .section-title:after {
+            background-color: var(--primary-orange);
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .review-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .review-rating {
+            color: gold;
+        }
+
+        .reviewer-name {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .review-text {
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Team Section */
+        #team {
+            background-color: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        #team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url('ChatGPT Image Mar 29, 2025, 03_00_26 PM.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+            opacity: 0.8;
+        }
+         #team .section-title {
+             color: var(--primary-blue);
+        }
+         #team .section-title:after {
+             background-color: var(--primary-orange);
+         }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .team-member-content {
+            padding: 20px;
+        }
+
+        .team-member-name {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .team-member-role {
+            color: var(--primary-orange);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .team-member-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .team-member {
+            width: 300px;
+            background-color: rgba(32, 33, 36, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            text-align: center;
+            padding-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            border-bottom: 3px solid var(--primary-orange);
+            padding: 10px;
+            background-color: var(--dark-card);
+        }
+
+        .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .team-position {
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .team-bio {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-link i {
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-orange);
+            transform: scale(1.1);
+        }
+
+        /* Appointment Section */
+        #appointment {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        #appointment .section-title {
+            color: white;
+        }
+
+        #appointment .section-title:after {
+            background-color: var(--secondary-orange);
+        }
+
+        .appointment-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .appointment-form {
+            flex: 1 1 500px;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: bold;
+        }
+
+        .form-control, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .form-control::placeholder, .form-textarea::placeholder {
+            color: #888;
+        }
+
+        .form-control:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(28, 93, 142, 0.25);
+            background-color: white;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px 12px;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .appointment-info {
+            flex: 1 1 400px;
+            min-width: 300px;
+            padding: 20px 0;
+        }
+
+        .info-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .info-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .info-item i {
+            color: var(--secondary-orange);
+            margin-right: 20px;
+            font-size: 1.8rem;
+            padding-top: 5px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .info-content h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--secondary-orange);
+            font-size: 1.2rem;
+        }
+
+        .info-content p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-secondary);
+            color: #ccc;
+            padding: 60px 0 20px;
+            border-top: 4px solid var(--primary-orange);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary-orange);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-blue);
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .footer-col .social-links {
+            justify-content: flex-start;
+            margin-top: 0;
+        }
+         .footer-col .social-link {
+            background-color: #333;
+         }
+         .footer-col .social-link:hover {
+            background-color: var(--primary-orange);
+         }
+
+        .footer-contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .footer-contact-item i {
+            color: var(--secondary-orange);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 4px;
+            width: 20px;
+            text-align: center;
+        }
+         .footer-contact-item div p {
+             margin-bottom: 5px;
+             color: #ccc;
+             line-height: 1.4;
+         }
+         .footer-contact-item a {
+             color: var(--secondary-orange);
+             text-decoration: none;
+             transition: color 0.3s ease;
+         }
+         .footer-contact-item a:hover {
+             color: var(--primary-orange);
+         }
+
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-orange);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-hours-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #ccc;
+            font-size: 0.95rem;
+            border-bottom: 1px dotted #555;
+            padding-bottom: 8px;
+        }
+         .footer-hours-item span:first-child {
+             font-weight: 500;
+         }
+         .footer-hours-item:last-child {
+             border-bottom: none;
+         }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .header-container {
+                 justify-content: center;
+             }
+             .logo {
+                 margin-bottom: 15px;
+                 width: 100%;
+                 justify-content: center;
+             }
+             .contact-info {
+                 justify-content: center;
+                 width: 100%;
+                 margin-bottom: 0;
+             }
+        }
+
+        @media (max-width: 768px) {
+             body { padding-top: 150px; }
+             .hero-title { font-size: 2rem; }
+             .hero-subtitle { font-size: 1.2rem; }
+             .hero-buttons { gap: 15px; }
+             .section-title { font-size: 2rem; }
+             .service-list { columns: 1; }
+             .tire-info-columns { flex-direction: column; }
+             .appointment-container { flex-direction: column; }
+             .appointment-form, .appointment-info { flex-basis: auto; width: 100%; }
+             .footer-col { min-width: 100%; text-align: center; }
+             .footer-title:after { left: 50%; transform: translateX(-50%); }
+             .footer-contact-item { justify-content: center; text-align: left; }
+             .footer-col .social-links { justify-content: center; }
+             .footer-hours-item { padding: 8px 10px; }
+        }
+
+        @media (max-width: 480px) {
+             body { padding-top: 180px; }
+             .contact-info { gap: 8px; }
+             .contact-button, .narrator-btn { min-width: 110px; padding: 8px 12px; font-size: 0.85rem; }
+             .hero-content { padding: 25px; }
+             .hero-title { font-size: 1.8rem; }
+             .section-title { font-size: 1.8rem; }
+             .service-card { width: 100%; max-width: 320px; height: auto; }
+             .service-grid { grid-template-columns: 1fr; }
+             .tire-service-card { padding: 20px; }
+        }
+
+        /* Success/Error message styles */
+        .message {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: rgba(144, 169, 89, 0.2);
+            color: var(--success-green);
+            border: 1px solid var(--success-green);
+        }
+
+        .error {
+            background-color: rgba(209, 91, 53, 0.2);
+            color: var(--primary-orange);
+            border: 1px solid var(--primary-orange);
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div id="particles-js"></div>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="brotheslogo.png" alt="Two Brothers Automotive Logo" class="logo-img">
+                <div class="logo-text">TWO BROTHERS <span>AUTOMOTIVE</span></div>
+            </a>
+            <div class="contact-info">
+                <a href="tel:+14149888909" class="contact-button" id="call-now-button">
+                    <span class="emoji">📞</span> Call Now
+                </a>
+                <a href="https://maps.google.com/?q=505+N+27th+St,+Milwaukee,+WI+53208" target="_blank" class="contact-button">
+                    <span class="emoji">📍</span> Get Directions
+                </a>
+                <button class="narrator-btn" id="narrator-btn">
+                    <span class="emoji">🔊</span> Listen
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Narrator Modal -->
+    <div id="narrator-modal" class="narrator-modal">
+        <div class="narrator-modal-content">
+            <h3 class="narrator-modal-title">Website Narrator</h3>
+            <div class="narrator-options">
+                <div class="narrator-option-group">
+                    <label for="narrator-voice" class="narrator-option-label">Choose Voice</label>
+                    <select id="narrator-voice" class="narrator-select">
+                        <option value="default">Default</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="narrator-option-group">
+                    <label for="narrator-language" class="narrator-option-label">Choose Language</label>
+                    <select id="narrator-language" class="narrator-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+            <div class="narrator-controls">
+                <button id="narrator-play-btn" class="narrator-control-btn narrator-play-btn">
+                    <i class="fas fa-play"></i> Play
+                </button>
+                <button id="narrator-stop-btn" class="narrator-control-btn narrator-stop-btn">
+                    <i class="fas fa-stop"></i> Stop
+                </button>
+                <button id="narrator-close-btn" class="narrator-control-btn narrator-close-btn">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="storefront-bg" style="background-image: url('ChatGPT Image Mar 29, 2025, 03_01_04 PM.png');"></div>
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <img src="brotheslogo.png" alt="Two Brothers Automotive Logo" class="hero-logo">
+                <div class="hero-message">
+                    <h1 class="hero-title">Your Trusted Auto Care Partner <span class="emoji-highlight">🔧</span></h1>
+                    <h2 class="hero-subtitle">Quality Service Since 2012</h2>
+                    <p>Welcome to Two Brothers Automotive, your one-stop shop for reliable auto repair and tire services in Milwaukee. Honesty, quality, and customer satisfaction drive everything we do.</p>
+                    <div class="hero-buttons">
+                        <a href="#appointment" class="btn">Schedule Service <span class="emoji">🗓️</span></a>
+                        <a href="#services" class="btn btn-outline">Our Services <span class="emoji">🧰</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Expert Services <span class="emoji-highlight">⚙️</span></h2>
+            <p class="service-intro">From routine maintenance to complex repairs, our ASE-certified technicians have the skills and equipment to keep your vehicle running smoothly and safely. We work on all makes and models.</p>
+            <div class="services-container">
+                <!-- Brake Service Card -->
+                <div class="service-card">
+                    <div class="service-card-inner">
+                        <div class="service-card-front">
+                            <img src="brakejob.png" alt="Brake Service" class="service-image">
+                            <div class="service-content">
+                                <div>
+                                    <h3 class="service-title">Brake Services <span class="emoji">🛑</span></h3>
+                                    <p class="service-description">Your safety is paramount. We offer comprehensive brake inspections and repairs using high-quality parts.</p>
+                                    <div class="service-details">
+                                        <ul>
+                                            <li><span class="emoji">✅</span> Brake Pad Replacement</li>
+                                            <li><span class="emoji">✅</span> Rotor Resurfacing/Replacement</li>
+                                            <li><span class="emoji">✅</span> Brake Fluid Flush</li>
+                                            <li><span class="emoji">✅</span> Caliper Service</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="btn" onclick="this.closest('.service-card').classList.toggle('flipped')">More Details</button>
+                            </div>
+                        </div>
+                        <div class="service-card-back">
+                            <div>
+                                <h3>Brake Services <span class="emoji">🛑</span></h3>
+                                <p>Ensure optimal stopping power and safety with our thorough brake services:</p>
+                                <ul>
+                                    <li><span class="emoji">🔧</span> Complete system inspection (pads, rotors, calipers, lines, fluid)</li>
+                                    <li><span class="emoji">⭐</span> Premium quality brake pad installation</li>
+                                    <li><span class="emoji">⚙️</span> Precision rotor resurfacing or replacement</li>
+                                    <li><span class="emoji">💧</span> Brake fluid level check and flush service</li>
+                                    <li><span class="emoji">🛠️</span> Caliper cleaning, lubrication, and replacement if needed</li>
+                                    <li><span class="emoji">🚗</span> Thorough road test post-service</li>
+                                </ul>
+                                <p>Includes our 24-month/24,000-mile warranty.</p>
+                            </div>
+                            <button class="btn" onclick="this.closest('.service-card').classList.toggle('flipped')">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engine Tune-Up Card -->
+                <div class="service-card">
+                    <div class="service-card-inner">
+                        <div class="service-card-front">
+                            <img src="engine tuneup.png" alt="Engine Tune-Up" class="service-image">
+                            <div class="service-content">
+                                <div>
+                                    <h3 class="service-title">Engine Tune-Ups <span class="emoji">🔥</span></h3>
+                                    <p class="service-description">Restore performance and fuel efficiency with our comprehensive engine tune-up services.</p>
+                                    <div class="service-details">
+                                        <ul>
+                                            <li><span class="emoji">✅</span> Spark Plug Replacement</li>
+                                            <li><span class="emoji">✅</span> Fuel System Cleaning</li>
+                                            <li><span class="emoji">✅</span> Filter Replacements</li>
+                                            <li><span class="emoji">✅</span> Fluid Checks &amp; Top-offs</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="btn" onclick="this.closest('.service-card').classList.toggle('flipped')">More Details</button>
+                            </div>
+                        </div>
+                        <div class="service-card-back">
+                            <div>
+                                <h3>Engine Tune-Ups <span class="emoji">🔥</span></h3>
+                                <p>Keep your engine running at its best:</p>
+                                <ul>
+                                    <li><span class="emoji">💻</span> Engine performance diagnostics scan</li>
+                                    <li><span class="emoji">⚡</span> Spark plug replacement (using manufacturer-spec plugs)</li>
+                                    <li><span class="emoji">🔍</span> Ignition system inspection (coils, wires)</li>
+                                    <li><span class="emoji">⛽</span> Fuel system cleaning and filter replacement</li>
+                                    <li><span class="emoji">💨</span> Air filter replacement</li>
+                                    <li><span class="emoji">🔧</span> Throttle body cleaning and service</li>
+                                    <li><span class="emoji">💧</span> Check and top-off essential fluids</li>
+                                </ul>
+                                <p>Improves power, smoothness, and fuel economy.</p>
+                            </div>
+                            <button class="btn" onclick="this.closest('.service-card').classList.toggle('flipped')">Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tire Service Card -->
+                <div class="service-card">
+                    <div class="service-card-inner">
+                        <div class="service-card-front">
+                            <img src="tires.jpg" alt="Tire Services" class="service-image">
+                            <div class="service-content">
+                                <div>
+                                    <h3 class="service-title">Tire Sales &amp; Service <span class="emoji">🛞</span></h3>
+                                    <p class="service-description">Your source for new tires, expert installation, and essential tire maintenance.</p>
+                                    <div class="service-details">
+                                        <ul>
+                                            <li><span class="emoji">✅</span> New Tire Sales (All Major Brands)</li>
+                                            <li><span class="emoji">✅</span> Tire Rotation &amp; Balancing</li>
+                                            <li><span class="emoji">✅</span> Flat Tire Repair</li>
+                                            <li><span class="emoji">✅</span> Wheel Alignments</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="btn" onclick="this.closest('.service-card').classList.toggle('flipped')">More Details</button>
+                            </div>
+                        </div>
+                        <div class="service-card-back">
+                            <div>
+                                <h3>Tire Sales &amp; Service <span class="emoji">🛞</span></h3>
+                                <p>Complete tire care under one roof:</p>
+                                <ul>
+                                    <li><span class="emoji">🏷️</span> Wide selection of new tires (All-Season, Winter, Performance, etc.)</li>
+                                    <li><span class="emoji">💨</span> Free tire pressure check &amp; inflation</li>
+                                    <li><span class="emoji">⚙️</span> Professional mounting &amp; computer balancing</li>
+                                    <li><span class="emoji">🔄</span> Tire rotation for even wear</li>
+                                    <li><span class="emoji">🔩</span> Expert flat tire repair (patch/plug)</li>
+                                    <li><span class="emoji">📏</span> Precise wheel alignment services</li>
+                                    <li><span class="emoji">⚠️</span> TPMS (Tire Pressure Monitoring System) service</li>
+                                </ul>
+                                <p>Competitive pricing ($65-$250+ per tire, depending on brand/size).</p>
+                            </div>
+                            <button class="btn" onclick="this.closest('.service-card').classList.toggle('flipped')">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comprehensive Services List -->
+            <div class="services-categories">
+                <div class="service-category">
+                    <h3>Maintenance &amp; Fluids</h3>
+                    <ul class="service-list">
+                        <li><span class="emoji">🛢️</span> Oil &amp; Filter Changes</li>
+                        <li><span class="emoji">💧</span> Fluid Flushes (Coolant, Brake, Trans)</li>
+                        <li><span class="emoji">🔋</span> Battery Testing &amp; Replacement</li>
+                        <li><span class="emoji">✅</span> Scheduled Maintenance</li>
+                        <li><span class="emoji">💨</span> Filter Replacements (Air, Cabin, Fuel)</li>
+                        <li><span class="emoji">💡</span> Bulb Replacements</li>
+                        <li><span class="emoji">🧹</span> Wiper Blade Installation</li>
+                        <li><span class="emoji">🔗</span> Belt &amp; Hose Inspection</li>
+                    </ul>
+                </div>
+
+                <div class="service-category">
+                    <h3>Repair Services</h3>
+                    <ul class="service-list">
+                        <li><span class="emoji">🛑</span> Brake System Repairs</li>
+                        <li><span class="emoji">🔥</span> Engine Diagnostics &amp; Repair</li>
+                        <li><span class="emoji">❄️</span> Air Conditioning Service &amp; Repair</li>
+                        <li><span class="emoji">🌡️</span> Cooling System &amp; Radiator Repair</li>
+                        <li><span class="emoji">⚙️</span> Transmission Service &amp; Repair</li>
+                        <li><span class="emoji">🚗</span> Steering &amp; Suspension Repair</li>
+                        <li><span class="emoji">⚡</span> Electrical System Diagnosis</li>
+                        <li><span class="emoji">💨</span> Exhaust System Repair</li>
+                    </ul>
+                </div>
+
+                <div class="service-category">
+                    <h3>Specialized &amp; Other</h3>
+                    <ul class="service-list">
+                        <li><span class="emoji">↔️</span> Wheel Alignments</li>
+                        <li><span class="emoji">⚠️</span> Check Engine Light Diagnosis</li>
+                        <li><span class="emoji">🚫</span> ABS &amp; Traction Control Repair</li>
+                        <li><span class="emoji">🔩</span> Axle, CV Joint, Driveshaft Repair</li>
+                        <li><span class="emoji">🔨</span> Shock &amp; Strut Replacement</li>
+                        <li><span class="emoji">⛽</span> Fuel System Repair</li>
+                        <li><span class="emoji">⚡</span> Starter &amp; Alternator Replacement</li>
+                        <li><span class="emoji">🚨</span> Pre-Purchase Inspections</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 1.2rem; margin-bottom: 20px; color: #444;">
+                    Don't see what you need? Give us a call! We handle almost any auto repair task.
+                </p>
+                <a href="#appointment" class="btn">Get a Service Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Tire Services Section -->
+    <section id="tire-services" class="section">
+        <div class="container">
+            <h2 class="section-title">Complete Tire Solutions <span class="emoji-highlight">🛞</span></h2>
+
+            <!-- Tire Services Section -->
+            <div class="tire-section">
+                <h2>Our Tire Services</h2>
+                <p>From expert advice and sales to installation and maintenance, we ensure your tires are safe and performing optimally for Milwaukee roads.</p>
+
+                <div class="tire-price-range" style="text-align: center;">
+                    New Tire Price Range: $65 - $250+ per tire (Varies by size, brand, type)
+                </div>
+
+                <!-- Consolidated Tire Brand & Size Guide -->
+                <div class="tire-brands-container">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Select a Brand to View Options</h3>
+                    
+                    <div class="tire-brands">
+                        <div class="tire-brand" data-brand="michelin">Michelin</div>
+                        <div class="tire-brand" data-brand="goodyear">Goodyear</div>
+                        <div class="tire-brand" data-brand="bridgestone">Bridgestone</div>
+                        <div class="tire-brand" data-brand="continental">Continental</div>
+                        <div class="tire-brand" data-brand="pirelli">Pirelli</div>
+                        <div class="tire-brand" data-brand="firestone">Firestone</div>
+                        <div class="tire-brand" data-brand="hankook">Hankook</div>
+                        <div class="tire-brand" data-brand="cooper">Cooper</div>
+                    </div>
+                    
+                    <!-- Brand-specific tire info panels -->
+                    <div class="tire-brand-info" id="michelin-info">
+                        <h4>Michelin Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Sedans &amp; Small Cars</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact Cars:</span> 195/65R15</li>
+                                    <li><span class="vehicle-type">Mid-size Sedans:</span> 205/55R16, 215/55R17</li>
+                                    <li><span class="vehicle-type">Performance Sedans:</span> 225/45R17, 225/40R18</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Crossovers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact SUVs:</span> 225/65R17, 235/55R19</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 235/65R18, 245/60R18</li>
+                                    <li><span class="vehicle-type">Full-size SUVs:</span> 275/55R20, 265/50R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Trucks &amp; Large Vehicles</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Light Trucks:</span> 245/70R17, 265/70R17</li>
+                                    <li><span class="vehicle-type">Full-size Trucks:</span> 275/55R20, 275/65R18</li>
+                                    <li><span class="vehicle-type">Heavy Duty:</span> LT275/70R18, LT265/70R17</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="goodyear-info">
+                        <h4>Goodyear Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Sedans &amp; Small Cars</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Economy Cars:</span> 185/65R15, 185/60R15</li>
+                                    <li><span class="vehicle-type">Mid-size Sedans:</span> 205/65R16, 215/60R16</li>
+                                    <li><span class="vehicle-type">Sport Sedans:</span> 225/45R18, 245/45R18</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Crossovers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Small Crossovers:</span> 215/65R16, 225/60R17</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 235/60R18, 245/60R18</li>
+                                    <li><span class="vehicle-type">Large SUVs:</span> 265/60R18, 255/55R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Trucks &amp; Performance</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Light Trucks:</span> 255/70R16, 265/70R17</li>
+                                    <li><span class="vehicle-type">Premium Trucks:</span> 275/60R20, 285/45R22</li>
+                                    <li><span class="vehicle-type">Performance:</span> 245/40R19, 275/40R20</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="bridgestone-info">
+                        <h4>Bridgestone Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Passenger Cars</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact Cars:</span> 195/65R15, 195/60R15</li>
+                                    <li><span class="vehicle-type">Family Sedans:</span> 205/65R16, 215/55R17</li>
+                                    <li><span class="vehicle-type">Luxury Sedans:</span> 225/50R17, 235/45R18</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Crossovers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact SUVs:</span> 225/65R17, 225/60R18</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 245/60R18, 255/55R19</li>
+                                    <li><span class="vehicle-type">Premium SUVs:</span> 255/50R20, 275/45R21</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Trucks &amp; Specialty</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Pickup Trucks:</span> 265/70R17, 275/65R18</li>
+                                    <li><span class="vehicle-type">Off-Road:</span> LT265/75R16, LT285/70R17</li>
+                                    <li><span class="vehicle-type">Winter Tires:</span> 205/55R16, 225/65R17</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="continental-info">
+                        <h4>Continental Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Commuter &amp; Family</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact Cars:</span> 185/65R15, 195/65R15</li>
+                                    <li><span class="vehicle-type">Mid-size Sedans:</span> 205/55R16, 215/55R17</li>
+                                    <li><span class="vehicle-type">Full-size Sedans:</span> 225/50R17, 225/45R18</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Vans</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Small SUVs:</span> 215/65R16, 225/65R17</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 235/65R17, 235/60R18</li>
+                                    <li><span class="vehicle-type">Minivans:</span> 235/65R16, 235/60R17</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Performance &amp; Premium</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Sport Cars:</span> 225/40R18, 245/40R18</li>
+                                    <li><span class="vehicle-type">Luxury SUVs:</span> 255/55R18, 265/45R20</li>
+                                    <li><span class="vehicle-type">Premium Sedans:</span> 245/45R19, 255/35R20</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="pirelli-info">
+                        <h4>Pirelli Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Premium &amp; Luxury</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Luxury Sedans:</span> 225/50R17, 245/45R18</li>
+                                    <li><span class="vehicle-type">Executive Cars:</span> 245/40R19, 255/35R20</li>
+                                    <li><span class="vehicle-type">Luxury SUVs:</span> 255/55R19, 275/45R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Performance &amp; Sport</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Sport Sedans:</span> 225/40R18, 235/35R19</li>
+                                    <li><span class="vehicle-type">Sports Cars:</span> 245/35R19, 255/35R19</li>
+                                    <li><span class="vehicle-type">High Performance:</span> 275/40R19, 305/30R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>All-Season &amp; SUV</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Premium SUVs:</span> 235/60R18, 255/50R19</li>
+                                    <li><span class="vehicle-type">Premium Sedans:</span> 205/55R16, 215/55R17</li>
+                                    <li><span class="vehicle-type">Crossovers:</span> 235/55R19, 235/65R17</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="firestone-info">
+                        <h4>Firestone Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Economy &amp; Value</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact Cars:</span> 185/65R15, 195/65R15</li>
+                                    <li><span class="vehicle-type">Economy Sedans:</span> 195/65R15, 205/65R16</li>
+                                    <li><span class="vehicle-type">Mid-size Sedans:</span> 205/55R16, 215/60R16</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Crossovers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Small SUVs:</span> 225/70R16, 225/65R17</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 235/65R17, 235/60R18</li>
+                                    <li><span class="vehicle-type">Full-size SUVs:</span> 265/60R18, 265/50R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Trucks &amp; All-Terrain</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Light Trucks:</span> 235/75R15, 245/70R17</li>
+                                    <li><span class="vehicle-type">Full-size Trucks:</span> 265/70R17, 275/65R18</li>
+                                    <li><span class="vehicle-type">All-Terrain:</span> LT265/70R17, LT285/70R17</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="hankook-info">
+                        <h4>Hankook Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Everyday Drivers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Small Cars:</span> 175/65R14, 185/65R15</li>
+                                    <li><span class="vehicle-type">Compact Cars:</span> 195/65R15, 205/55R16</li>
+                                    <li><span class="vehicle-type">Mid-size Sedans:</span> 215/55R17, 225/50R17</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Crossovers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact SUVs:</span> 225/65R17, 225/60R18</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 235/60R18, 245/60R18</li>
+                                    <li><span class="vehicle-type">Large SUVs:</span> 255/55R19, 265/50R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Value Performance</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Sport Sedans:</span> 225/45R17, 225/40R18</li>
+                                    <li><span class="vehicle-type">Performance Cars:</span> 235/40R18, 245/35R19</li>
+                                    <li><span class="vehicle-type">Light Trucks:</span> 265/70R17, 275/55R20</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tire-brand-info" id="cooper-info">
+                        <h4>Cooper Tires</h4>
+                        <div class="tire-info-columns">
+                            <div class="tire-vehicle-types">
+                                <h5>Passenger Vehicles</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Compact Cars:</span> 185/65R15, 195/65R15</li>
+                                    <li><span class="vehicle-type">Mid-size Cars:</span> 205/65R16, 215/60R16</li>
+                                    <li><span class="vehicle-type">Full-size Sedans:</span> 225/55R17, 225/50R18</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>SUVs &amp; Crossovers</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Small SUVs:</span> 215/70R16, 225/65R17</li>
+                                    <li><span class="vehicle-type">Mid-size SUVs:</span> 235/65R17, 245/60R18</li>
+                                    <li><span class="vehicle-type">Large SUVs:</span> 265/60R18, 255/55R20</li>
+                                </ul>
+                            </div>
+                            <div class="tire-vehicle-types">
+                                <h5>Trucks &amp; Off-Road</h5>
+                                <ul class="tire-size-list">
+                                    <li><span class="vehicle-type">Light Trucks:</span> 245/75R16, 265/70R17</li>
+                                    <li><span class="vehicle-type">Full-size Trucks:</span> 275/65R18, 275/60R20</li>
+                                    <li><span class="vehicle-type">All-Terrain:</span> LT265/75R16, LT275/70R18</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.9rem; color: #888; text-align: center; margin-top: 20px;">
+                        *Custom sizes and special orders available. Contact us for specific size availability and pricing.*
+                    </p>
+                </div>
+
+                <!-- Tire Selection Chart -->
+                <div class="tire-selection-chart" style="margin-top: 40px;">
+                    <h3>Tire Type Selection Guide</h3>
+                    <p style="color: #aaa; text-align:center; margin-bottom: 20px;">Find the right tire type for your driving needs and vehicle.</p>
+                    <table class="tire-chart-table">
+                        <thead>
+                            <tr>
+                                <th>Tire Type</th>
+                                <th>Best For</th>
+                                <th>Common Sizes</th>
+                                <th>Key Features</th>
+                                <th>Price Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>All-Season</td>
+                                <td>Daily commuters, family sedans, SUVs</td>
+                                <td>205/55R16, 215/60R16, 225/65R17</td>
+                                <td>Year-round performance, good tread life, balanced for wet/dry</td>
+                                <td>$65-$150</td>
+                            </tr>
+                            <tr>
+                                <td>All-Terrain</td>
+                                <td>Trucks, SUVs, off-road enthusiasts</td>
+                                <td>265/70R17, 275/65R18, 285/70R17</td>
+                                <td>50/50 on/off-road capability, aggressive tread</td>
+                                <td>$120-$250</td>
+                            </tr>
+                            <tr>
+                                <td>Winter/Snow</td>
+                                <td>Any vehicle in severe winter conditions</td>
+                                <td>205/55R16, 225/65R17, 235/65R17</td>
+                                <td>Superior snow traction, ice braking, flexible in cold</td>
+                                <td>$90-$200</td>
+                            </tr>
+                            <tr>
+                                <td>Performance</td>
+                                <td>Sports cars, luxury sedans</td>
+                                <td>225/45R17, 235/40R18, 245/40R19</td>
+                                <td>Enhanced handling, responsiveness, grip</td>
+                                <td>$120-$300</td>
+                            </tr>
+                            <tr>
+                                <td>Touring</td>
+                                <td>Family sedans, premium vehicles</td>
+                                <td>215/60R16, 225/55R17, 235/55R18</td>
+                                <td>Comfortable ride, low noise, long tread life</td>
+                                <td>$80-$180</td>
+                            </tr>
+                            <tr>
+                                <td>Highway Truck</td>
+                                <td>Pickup trucks, SUVs</td>
+                                <td>265/70R17, 275/55R20, 275/65R18</td>
+                                <td>High load capacity, durable, stable towing</td>
+                                <td>$150-$250</td>
+                            </tr>
+                            <tr>
+                                <td>Economy</td>
+                                <td>Compact cars, budget-conscious drivers</td>
+                                <td>185/65R15, 195/65R15, 205/55R16</td>
+                                <td>Affordable, basic all-season performance</td>
+                                <td>$50-$90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size:0.9rem; color: #888; text-align:center; margin-top: 20px;">Our experts will recommend the best tire type for your vehicle, driving habits, and budget.</p>
+                </div>
+
+                <div class="service-grid">
+                    <div class="tire-service-card">
+                        <h3>Tire Installation</h3>
+                        <ul>
+                            <li>Professional mounting</li>
+                            <li>Computerized balancing</li>
+                            <li>New valve stems (standard)</li>
+                            <li>TPMS sensor service/reset</li>
+                            <li>Proper torque specification</li>
+                            <li>Waste tire disposal</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $25/tire</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>Tire Rotation</h3>
+                        <ul>
+                            <li>Promotes even tread wear</li>
+                            <li>Extends tire lifespan</li>
+                            <li>Improves handling balance</li>
+                            <li>Visual tire inspection included</li>
+                            <li>Recommended every 5-7k miles</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $35/set</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>Wheel Alignment</h3>
+                        <ul>
+                            <li>Precision 4-wheel alignment</li>
+                            <li>State-of-the-art equipment</li>
+                            <li>Prevents uneven tire wear</li>
+                            <li>Improves fuel efficiency</li>
+                            <li>Enhances vehicle handling</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $75</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>Flat Tire Repair</h3>
+                        <ul>
+                            <li>Safe &amp; reliable puncture repair</li>
+                            <li>Industry-standard patch/plug</li>
+                            <li>Includes re-balancing</li>
+                            <li>Thorough leak check</li>
+                            <li>Quick turnaround time</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $25/tire</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>Tire Balancing</h3>
+                        <ul>
+                            <li>Computerized spin balancing</li>
+                            <li>Eliminates vibrations</li>
+                            <li>Ensures smooth ride</li>
+                            <li>Prevents premature wear</li>
+                            <li>Recommended with rotation</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $15/tire</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>TPMS Service</h3>
+                        <ul>
+                            <li>Sensor diagnostics &amp; testing</li>
+                            <li>Sensor replacement/programming</li>
+                            <li>Warning light diagnosis/reset</li>
+                            <li>Battery replacement (where applicable)</li>
+                            <li>System relearn procedures</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $20 + parts</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Tire Services -->
+            <div class="tire-section">
+                <h2>Additional Tire &amp; Wheel Services</h2>
+                <p>Beyond the basics, we offer specialized services to meet all your tire and wheel needs.</p>
+
+                <div class="service-grid">
+                    <div class="tire-service-card">
+                        <h3>Used Tires</h3>
+                        <ul>
+                            <li>Quality inspected tires</li>
+                            <li>Various sizes &amp; brands</li>
+                            <li>Budget-friendly alternative</li>
+                            <li>Checked for safety</li>
+                            <li>Limited warranty available</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $35/tire</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>Custom Wheels</h3>
+                        <ul>
+                            <li>Wide selection of styles</li>
+                            <li>Various finishes &amp; sizes</li>
+                            <li>Expert fitment advice</li>
+                            <li>Professional installation</li>
+                            <li>Wheel &amp; tire packages</li>
+                        </ul>
+                        <p class="tire-price-range">Call for Quote</p>
+                    </div>
+
+                    <div class="tire-service-card">
+                        <h3>Seasonal Tire Storage</h3>
+                        <ul>
+                            <li>Convenient off-season storage</li>
+                            <li>Climate-controlled option</li>
+                            <li>Secure &amp; organized</li>
+                            <li>Frees up your garage space</li>
+                            <li>Easy swap appointments</li>
+                        </ul>
+                        <p class="tire-price-range">$50/season per set</p>
+                    </div>
+                    <div class="tire-service-card">
+                        <h3>Wheel Repair</h3>
+                        <ul>
+                            <li>Bent wheel straightening</li>
+                            <li>Curb rash repair</li>
+                            <li>Crack welding (aluminum)</li>
+                            <li>Refinishing services</li>
+                            <li>Restores wheel integrity &amp; look</li>
+                        </ul>
+                        <p class="tire-price-range">Starting at $75/wheel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section id="appointment" class="section">
+        <div class="container">
+            <h2 class="section-title">Schedule Your Appointment</h2>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); max-width: 700px; margin: -30px auto 40px; line-height: 1.6;">Ready for service? Fill out the form below or give us a call. We'll get back to you promptly to confirm your appointment.</p>
+            <div class="appointment-container">
+                <div class="appointment-form">
+                    <h3 class="form-title">Book Your Service Online</h3>
+                    <form id="appointment-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name <span style="color:red">*</span></label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number <span style="color:red">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g., 414-555-1212" required pattern="[0-9]{3}-?[0-9]{3}-?[0-9]{4}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vehicle" class="form-label">Vehicle (Year, Make, Model)</label>
+                            <input type="text" id="vehicle" name="vehicle" class="form-control" placeholder="e.g., 2018 Honda Civic">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Needed <span style="color:red">*</span></label>
+                            <select id="service" name="service" class="form-select" required>
+                                <option value="" disabled selected>-- Select a Service --</option>
+                                <option value="Tire Sales/Installation">Tire Sales/Installation</option>
+                                <option value="Tire Rotation/Balance">Tire Rotation/Balance</option>
+                                <option value="Wheel Alignment">Wheel Alignment</option>
+                                <option value="Flat Tire Repair">Flat Tire Repair</option>
+                                <option value="Brake Service/Repair">Brake Service/Repair</option>
+                                <option value="Engine Tune-Up">Engine Tune-Up</option>
+                                <option value="Oil Change">Oil Change</option>
+                                <option value="AC Service">Air Conditioning Service</option>
+                                <option value="Check Engine Light">Check Engine Light Diagnosis</option>
+                                <option value="General Maintenance">General Maintenance</option>
+                                <option value="Other Repair">Other Repair (Describe Below)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date" class="form-label">Preferred Date <span style="color:red">*</span></label>
+                            <input type="date" id="date" name="date" class="form-control" required min="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time" class="form-label">Preferred Time</label>
+                            <select id="time" name="time" class="form-select">
+                                <option value="" disabled selected>-- Select a Time Preference --</option>
+                                <option value="Morning (8AM-12PM)">Morning (8AM - 12PM)</option>
+                                <option value="Afternoon (12PM-3PM)">Afternoon (12PM - 3PM)</option>
+                                <option value="Late Afternoon (3PM-6PM)">Late Afternoon (3PM - 6PM)</option>
+                                <option value="Flexible">Flexible</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Additional Information / Questions</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Please provide any details about your vehicle's issue, specific requests, or questions you may have."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Request Appointment</button>
+                    </form>
+                    <div id="form-status" style="margin-top: 15px; text-align: center; color: var(--dark); font-weight: bold;"></div>
+                </div>
+
+                <div class="appointment-info">
+                    <h3 class="info-title">Why Choose Two Brothers?</h3>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <i class="fas fa-certificate"></i>
+                            <div class="info-content">
+                                <h3>ASE Certified Technicians</h3>
+                                <p>Our team holds certifications ensuring they meet the highest industry standards for knowledge and skill.</p>
+                            </div>
+                        </li>
+
+                        <li class="info-item">
+                            <i class="fas fa-handshake"></i>
+                            <div class="info-content">
+                                <h3>Honest &amp; Transparent Service</h3>
+                                <p>We believe in clear communication, fair pricing, and only recommending services you truly need.</p>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <i class="fas fa-tools"></i>
+                            <div class="info-content">
+                                <h3>State-of-the-Art Equipment</h3>
+                                <p>We invest in modern diagnostic and repair tools to service your vehicle efficiently and accurately.</p>
+                            </div>
+                        </li>
+
+                        <li class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="info-content">
+                                <h3>Nationwide Warranty</h3>
+                                <p>Enjoy peace of mind with our 24-month/24,000-mile warranty on most parts and labor, honored nationwide.</p>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="info-content">
+                                <h3>Convenient Location</h3>
+                                <p>Easily accessible in Milwaukee, making drop-off and pick-up hassle-free. <a href="https://maps.google.com/?q=505+N+27th+St,+Milwaukee,+WI+53208" target="_blank" style="color:var(--secondary-orange); text-decoration:underline;">Get Directions</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div style="margin-top: 30px; text-align: center;">
+                        <h3 style="color:white; margin-bottom:15px;">Or Call Us Directly:</h3>
+                        <a href="tel:+14149888909" class="btn" style="background-color: var(--secondary-orange); font-size: 1.2rem;">
+                            <span class="emoji">📞</span> (414) 988-8909
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="section">
+        <div class="container">
+            <h2 class="section-title">Customer Reviews <span class="emoji-highlight">⭐</span></h2>
+            
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="reviewer-name">Michael Davis</div>
+                    </div>
+                    <p class="review-text">"Two Brothers Automotive saved me when my car broke down on the highway! They responded quickly, fixed the issue, and got me back on the road. Their prices are fair and the service is outstanding!"</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="reviewer-name">Sarah Johnson</div>
+                    </div>
+                    <p class="review-text">"I've been going to Two Brothers for all my tire needs for years. They always have exactly what I need at a great price. The staff is knowledgeable and never tries to upsell me on things I don't need."</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <div class="reviewer-name">Robert Williams</div>
+                    </div>
+                    <p class="review-text">"After being quoted an outrageous price by a dealership, I took my car to Two Brothers. They diagnosed the issue correctly and fixed it for less than half the price. These guys are honest and skilled!"</p>
+                </div>
+            </div>
+            
+            <div class="review-cta" style="text-align: center; margin-top: 40px;">
+                <p style="margin-bottom: 20px; font-size: 1.2rem; color: #555;">Join our satisfied customers today!</p>
+                <a href="#appointment" class="btn">Schedule Your Service</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Dedicated Team</h2>
+            <div class="team-container">
+            <div class="team-member">
+                <img src="brother1.png" alt="Dave" class="team-image">
+                <div class="team-member-content">
+                    <h3 class="team-member-name">Dave</h3>
+                    <div class="team-member-role">Co-Owner &amp; Master Technician</div>
+                    <p class="team-member-description">Expert in automotive diagnostics and repair with over 15 years of experience.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="Brothertwo.png" alt="Mike" class="team-image">
+                <div class="team-member-content">
+                    <h3 class="team-member-name">Mike</h3>
+                    <div class="team-member-role">Co-Owner &amp; Service Manager</div>
+                    <p class="team-member-description">Specializes in customer service and tire services management.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="ChatGPT Image Mar 29, 2025, 02_59_37 PM.png" alt="Robert" class="team-image">
+                <div class="team-member-content">
+                    <h3 class="team-member-name">Robert</h3>
+                    <div class="team-member-role">Senior Technician</div>
+                    <p class="team-member-description">Certified specialist in brake systems and engine performance.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3 class="footer-title">About Us</h3>
+                    <p>Two Brothers Automotive is your friendly, neighborhood auto repair shop serving the Milwaukee community since 2012. We pride ourselves on integrity, quality workmanship, and building lasting relationships with our customers.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i>Visit us on Facebook</a>
+                        <a href="#" class="social-link" aria-label="Check our reviews on Yelp"><i class="fab fa-yelp"></i>Read our Yelp reviews</a>
+                        <a href="#" class="social-link" aria-label="Find us on Google"><i class="fab fa-google"></i>Find us on Google</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact Information</h3>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p><strong>Address:</strong></p>
+                            <p>505 N 27th St<br>Milwaukee, WI 53208</p>
+                            <p><a href="https://maps.google.com/?q=505+N+27th+St,+Milwaukee,+WI+53208" target="_blank">View on Map</a></p>
+                        </div>
+                    </div>
+
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                             <p><strong>Phone:</strong></p>
+                            <p><a href="tel:+14149888909" style="color: #ccc;">(414) 988-8909</a></p>
+                        </div>
+                    </div>
+
+                    <div class="footer-contact-item">
+                        <i class="far fa-envelope"></i>
+                        <div>
+                            <p><strong>Email:</strong></p>
+                            <p><a href="mailto:info@twobrothersauto.com" style="color: #ccc;">info@twobrothersauto.com</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#services"><i class="fas fa-wrench"></i> Our Services</a></li>
+                        <li><a href="#tire-services"><i class="fas fa-dot-circle"></i> Tire Services</a></li>
+                        <li><a href="#reviews"><i class="fas fa-star"></i> Customer Reviews</a></li>
+                        <li><a href="#team"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="#appointment"><i class="fas fa-calendar-alt"></i> Schedule Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Business Hours</h3>
+                    <div class="footer-hours-item">
+                        <span>Monday - Friday:</span>
+                        <span>8:00 AM - 6:00 PM</span>
+                    </div>
+
+                    <div class="footer-hours-item">
+                        <span>Saturday:</span>
+                        <span>8:00 AM - 3:00 PM</span>
+                    </div>
+
+                    <div class="footer-hours-item">
+                        <span>Sunday:</span>
+                        <span>Closed</span>
+                    </div>
+                     <p style="font-size: 0.85rem; margin-top: 15px; color: rgba(255,255,255,0.6);">*After-hours drop-off available.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> Two Brothers Automotive. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Header Adjustment ---
+            const header = document.getElementById('main-header');
+            const body = document.body;
+            
+            function adjustBodyPadding() {
+                const headerHeight = header.offsetHeight;
+                body.style.paddingTop = headerHeight + 'px';
+            }
+            
+            adjustBodyPadding(); // Initial adjustment
+            window.addEventListener('resize', adjustBodyPadding); // Adjust on resize
+
+            // --- Set current year in footer ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Set minimum date for appointment form ---
+            const dateInput = document.getElementById('date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+
+            // --- Narrator Modal Functionality ---
+            const narratorBtn = document.getElementById('narrator-btn');
+            const narratorModal = document.getElementById('narrator-modal');
+            const narratorCloseBtn = document.getElementById('narrator-close-btn');
+            const narratorPlayBtn = document.getElementById('narrator-play-btn');
+            const narratorStopBtn = document.getElementById('narrator-stop-btn');
+            const narratorVoice = document.getElementById('narrator-voice');
+            const narratorLanguage = document.getElementById('narrator-language');
+            
+            let isNarrating = false;
+            let currentUtterance = null;
+
+            if (narratorBtn && 'speechSynthesis' in window) {
+                const synth = window.speechSynthesis;
+                
+                // Toggle narrator modal
+                narratorBtn.addEventListener('click', function() {
+                    narratorModal.style.display = 'flex';
+                });
+
+                // Close narrator modal
+                narratorCloseBtn.addEventListener('click', function() {
+                    narratorModal.style.display = 'none';
+                });
+
+                function stopNarration() {
+                    if (synth.speaking) {
+                        synth.cancel();
+                    }
+                    isNarrating = false;
+                    narratorBtn.classList.remove('active');
+                    narratorBtn.innerHTML = '<span class="emoji">🔊</span> Listen';
+                    if (currentUtterance) {
+                        currentUtterance.onend = null;
+                        currentUtterance = null;
+                    }
+                }
+
+                function startNarration() {
+                    if (synth.speaking) {
+                        synth.cancel();
+                    }
+
+                    // Narrator message content for different languages
+                    const narratorMessages = {
+                        'en': "Why Choose Two Brothers Automotive? Conveniently located near Interstate 94, we've proudly served Milwaukee drivers since 2012. Our ASE-certified technicians specialize in the services Wisconsin drivers need most: Tire Services, Brake Repairs, Oil Changes, and more. We understand Wisconsin's challenging climate and provide tailored, year-round care to keep your vehicle running smoothly.",
+                        'es': "¿Por qué elegir Two Brothers Automotive? Convenientemente ubicados cerca de Interstate 94, hemos servido con orgullo a los conductores de Milwaukee desde 2012. Nuestros técnicos certificados por ASE se especializan en los servicios que los conductores de Wisconsin necesitan más: Servicios de neumáticos, Reparaciones de frenos, Cambios de aceite y más.",
+                        'fr': "Pourquoi choisir Two Brothers Automotive? Idéalement situé près de l'Interstate 94, nous servons fièrement les conducteurs de Milwaukee depuis 2012. Nos techniciens certifiés ASE se spécialisent dans les services dont les conducteurs du Wisconsin ont le plus besoin : Services de pneus, Réparations de freins, Vidanges d'huile et plus encore.",
+                        'de': "Warum Two Brothers Automotive wählen? Günstig in der Nähe der Interstate 94 gelegen, bedienen wir stolz Milwaukee-Fahrer seit 2012. Unsere ASE-zertifizierten Techniker sind auf die Dienstleistungen spezialisiert, die Wisconsin-Fahrer am meisten benötigen: Reifenservice, Bremsenreparaturen, Ölwechsel und mehr."
+                    };
+
+                    const selectedLanguage = narratorLanguage.value;
+                    const message = narratorMessages[selectedLanguage] || narratorMessages['en'];
+
+                    currentUtterance = new SpeechSynthesisUtterance(message);
+                    currentUtterance.lang = selectedLanguage;
+                    
+                    // Set voice if available
+                    const voices = synth.getVoices();
+                    if (voices.length > 0) {
+                        let preferredVoice = null;
+                        
+                        if (narratorVoice.value === 'male') {
+                            preferredVoice = voices.find(v => v.name.includes('Male'));
+                        } else if (narratorVoice.value === 'female') {
+                            preferredVoice = voices.find(v => v.name.includes('Female'));
+                        }
+                        
+                        if (preferredVoice) {
+                            currentUtterance.voice = preferredVoice;
+                        }
+                    }
+                    
+                    currentUtterance.onend = function() {
+                        stopNarration();
+                    };
+                    
+                    currentUtterance.onerror = function(event) {
+                        console.error('SpeechSynthesisUtterance error', event);
+                        stopNarration();
+                    };
+
+                    synth.speak(currentUtterance);
+                    isNarrating = true;
+                    narratorBtn.classList.add('active');
+                    narratorBtn.innerHTML = '<span class="emoji">🤫</span> Stop';
+                }
+
+                // Play narration button
+                narratorPlayBtn.addEventListener('click', function() {
+                    startNarration();
+                    // Keep modal open so user can see it's playing
+                });
+
+                // Stop narration button
+                narratorStopBtn.addEventListener('click', function() {
+                    stopNarration();
+                });
+
+                // Main narrator button can toggle narration when active
+                narratorBtn.addEventListener('click', function() {
+                    if (isNarrating) {
+                        stopNarration();
+                        narratorModal.style.display = 'none';
+                    } 
+                    // Otherwise, just open the modal (handled above)
+                });
+
+                // Stop narration if user navigates away
+                window.addEventListener('beforeunload', function() {
+                    if (isNarrating) {
+                        stopNarration();
+                    }
+                });
+            } else if (narratorBtn) {
+                // If speech synthesis isn't supported
+                narratorBtn.disabled = true;
+                narratorBtn.title = "Speech synthesis not supported in your browser.";
+            }
+
+            // --- Tire Brand Selection ---
+            const tireBrands = document.querySelectorAll('.tire-brand');
+            const brandInfoPanels = document.querySelectorAll('.tire-brand-info');
+
+            tireBrands.forEach(brand => {
+                brand.addEventListener('click', function() {
+                    const targetBrand = this.getAttribute('data-brand');
+                    const targetPanel = document.getElementById(targetBrand + '-info');
+                    
+                    // Remove active class from all brands and panels
+                    tireBrands.forEach(b => b.classList.remove('active'));
+                    brandInfoPanels.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to selected brand and panel
+                    this.classList.add('active');
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+                });
+            });
+
+            // Auto-select first brand on page load
+            if (tireBrands.length > 0 && brandInfoPanels.length > 0) {
+                tireBrands[0].classList.add('active');
+                brandInfoPanels[0].classList.add('active');
+            }
+
+            // --- Form Submission ---
+            const appointmentForm = document.getElementById('appointment-form');
+            const formStatus = document.getElementById('form-status');
+
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show submitting status
+                    formStatus.innerHTML = '<div class="message">Submitting your request...</div>';
+                    
+                    // Simulate form submission with delay
+                    setTimeout(function() {
+                        formStatus.innerHTML = '<div class="message success">Thank you! Your appointment request has been received. We will contact you shortly to confirm.</div>';
+                        appointmentForm.reset();
+                    }, 1500);
+                });
+            }
+
+            // --- Particles.js Initialization ---
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 100,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": ["#1c5d8e", "#3c7ba7", "#d15b35", "#e57d5e", "#f8f1dd"]
+                        },
+                        "shape": {
+                            "type": ["circle", "triangle"],
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.6,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 0.8,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3.5,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 3,
+                                "size_min": 0.2,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 160,
+                            "color": "#3c7ba7",
+                            "opacity": 0.5,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2.5,
+                            "direction": "none",
+                            "random": true,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": true,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 150,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 300,
+                                "size": 30,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 150,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+
+            // --- Smooth Scroll for Navigation Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    
+                    // Ensure it's a valid ID selector
+                    if (targetId && targetId.length > 1 && targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            e.preventDefault(); // Prevent default only if target exists
+                            
+                            // Calculate offset based on fixed header height
+                            const headerOffset = document.getElementById('main-header').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
